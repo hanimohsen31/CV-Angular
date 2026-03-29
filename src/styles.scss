@@ -47,35 +47,35 @@ $sideMarginBot: 60px;
   display: flex;
   // justify
   @if $justify == s {
-      justify-content: flex-start;
+    justify-content: flex-start;
   } @else if $justify == c {
-      justify-content: center;
+    justify-content: center;
   } @else if $justify == e {
-      justify-content: flex-end;
+    justify-content: flex-end;
   } @else if $justify == sb {
-      justify-content: space-between;
+    justify-content: space-between;
   } @else if $justify == sa {
-      justify-content: space-around;
+    justify-content: space-around;
   } @else if $justify == se {
-      justify-content: space-evenly;
+    justify-content: space-evenly;
   }
   // align
   @if $align == s {
-      align-items: flex-start;
+    align-items: flex-start;
   } @else if $align == c {
-      align-items: center;
+    align-items: center;
   } @else if $align == e {
-      align-items: flex-end;
+    align-items: flex-end;
   }
   // align
   @if $direction == c {
-      flex-direction: column;
+    flex-direction: column;
   } @else if $direction == cr {
-      flex-direction: column-reverse;
+    flex-direction: column-reverse;
   } @else if $direction == r {
-      flex-direction: row;
+    flex-direction: row;
   } @else if $direction == rw {
-      flex-direction: row-reverse;
+    flex-direction: row-reverse;
   }
 }
 
@@ -86,11 +86,11 @@ $sideMarginBot: 60px;
   margin: 0;
 }
 
-html{
+html {
   height: 100%;
 }
 
-body{
+body {
   height: 100%;
 }
 
@@ -110,32 +110,291 @@ ul {
   width: 900px;
 }
 
-.flex-1{
+.flex-1 {
   flex: 1;
 }
 
 @media print {
-    .Paper {
-        -webkit-box-shadow: none;
-        -moz-box-shadow: none;
-        box-shadow: none;
-        page-break-before: always;
-        margin: 0px !important;
-        width: 100%;
-    }
-    html {
-        zoom: 95%;
-        margin: 0 !important;
-    }
-    body {
-        margin: 0px !important;
-        width: $pageWidth;
-    }
+  .Paper {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    page-break-before: always;
+    margin: 0px !important;
+    width: 100%;
+  }
+  html {
+    zoom: 95%;
+    margin: 0 !important;
+  }
+  body {
+    margin: 0px !important;
+    width: $pageWidth;
+  }
 }
 
 @page {
   size: A4;
-    zoom: 95%;
-    // size: auto; /* auto is the initial value */
-    margin: 0mm !important; /* this affects the margin in the printer settings */
+  zoom: 95%;
+  // size: auto; /* auto is the initial value */
+  margin: 0mm !important; /* this affects the margin in the printer settings */
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: scroll;
+}
+
+.Paper {
+  -webkit-box-shadow: 0px 0px 20px -4px rgba(0, 0, 0, 0.33);
+  -moz-box-shadow: 0px 0px 20px -4px rgba(0, 0, 0, 0.33);
+  box-shadow: 0px 0px 20px -4px rgba(0, 0, 0, 0.33);
+  padding: 100px;
+  width: $pageWidth;
+  height: $pageHeight;
+  // margin: 50px;
+  position: relative;
+  .counter {
+    position: absolute;
+    bottom: 40px;
+    right: 50px;
+    opacity: 0.8;
+    font-size: 16pt;
+    font-weight: 500;
+  }
+}
+
+.Name {
+  @include flex(s, s, c);
+  // max-width: 300px;
+  font-size: $headersFS;
+  text-transform: uppercase;
+  line-height: 1;
+  margin-bottom: 40px;
+  span {
+    font-family: $headersFont;
+    // color: $mainColor;
+  }
+}
+
+.Title {
+  font-family: $headersFont;
+  // max-width: 300px;
+  font-size: $titleFS;
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: 1px;
+  padding: 2px;
+  margin: 10px 0;
+  color: $mainColor;
+}
+
+.Section {
+  margin-bottom: $sectionsMarginBot;
+  .header {
+    margin-bottom: 20px;
+    color: $mainColor;
+    font-size: $subHeadersFS;
+    font-family: $subHeadersFont;
+    text-transform: uppercase;
+  }
+  .body {
+    display: flex;
+    .sideLineAndIcons {
+      @include flex(s, c, c);
+      margin-inline-end: 20px;
+      img {
+        width: $icon;
+        height: $icon;
+        margin-bottom: 20px;
+      }
+      .line {
+        height: 100%;
+        width: $lineWidth;
+        background-color: $mainColor;
+      }
+      .filler {
+        width: $icon;
+        height: $filler;
+      }
+    }
+    .content {
+      font-size: $textFS;
+      font-weight: $textWeightReg;
+    }
+  }
+}
+
+.Work {
+  h3 {
+    font-size: $textFS;
+    font-weight: $textWeightBold;
+    &:nth-child(2) {
+      color: $mainColor;
+    }
+  }
+  ul {
+    margin-bottom: 30px;
+    li {
+      font-size: $textFS;
+      &:last-child {
+        color: $mainColor;
+      }
+    }
+  }
+}
+
+.Education {
+  .edu {
+    h3 {
+      font-weight: $textWeightBold;
+      font-size: $textFS;
+      &:nth-child(2) {
+        color: $mainColor;
+      }
+    }
+    ul {
+      li {
+        font-size: $textFS;
+      }
+    }
+  }
+}
+
+.edu {
+  h3 {
+    font-weight: $textWeightBold;
+    font-size: $textFS;
+    &:nth-child(2) {
+      color: $mainColor;
+    }
+  }
+  ul {
+    li {
+      font-size: $textFS;
+    }
+  }
+}
+
+.Training {
+  ul {
+    li {
+      span {
+        display: block;
+        &:first-child {
+          font-size: $textFS;
+          font-weight: $textWeightBold;
+        }
+        &:nth-child(2) {
+          font-size: $coursesFS;
+        }
+      }
+    }
+  }
+}
+
+.Personal {
+  ul {
+    li {
+      font-weight: $textWeightBold;
+      font-size: $textFS;
+    }
+  }
+}
+
+.Contacts,
+.Technical,
+.languageSkills,
+.Projects {
+  margin-bottom: $sideMarginBot;
+  h3 {
+    &:first-of-type {
+      color: $mainColor;
+      font-family: $subHeadersFont;
+      font-size: $subHeadersFS;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.Contacts {
+  .contact {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    .icon {
+      height: $iconContacts;
+      width: $iconContacts;
+      display: flex;
+      margin-inline-end: 10px;
+    }
+    a,
+    span {
+      color: black;
+      padding: 0;
+      margin: 0;
+      font-size: $textFS;
+    }
+  }
+}
+
+.Technical {
+  li {
+    font-size: $textFS;
+    font-weight: $textWeightReg;
+  }
+}
+
+.languageSkills {
+  ul {
+    li {
+      font-size: $textFS;
+      font-weight: $textWeightReg;
+    }
+  }
+}
+
+.Projects {
+  .notes {
+    font-size: $notesFS;
+    font-weight: $textWeightReg;
+    margin-bottom: 10px;
+  }
+  ul {
+    h4 {
+      color: black;
+      font-size: $projectsFS;
+      font-weight: $textWeightBold;
+      padding: 0;
+      margin: 0;
+    }
+    h5 {
+      color: black;
+      font-size: $projectsFS;
+      font-weight: $textWeightBold;
+      padding: 0;
+      margin: 0;
+      margin-top: 10px;
+      font-weight: normal;
+      font-size: 23px;
+    }
+    li {
+      font-size: $projectsFS;
+      margin-bottom: 25px;
+      font-weight: $textWeightReg;
+      a {
+        color: $mainColor;
+      }
+      div {
+        display: flex;
+        width: 300px;
+      }
+    }
+  }
+}
+
+.text-area{
+  height: 100vh;
 }

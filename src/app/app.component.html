@@ -1,1 +1,22 @@
-<app-v2></app-v2>
+<div class="container-fluid d-flex gap-5" style="overflow-y: hidden;">
+  <div class="pages-container" style="height: 100%;overflow-y: scroll;">
+    @for (page of [page1Data, page2Data, page3Data]; track $index) {
+    <div class="paper-container Page Paper pc">
+      <!-- ------------------------------------------------- title ------------------------------------------------ -->
+      <div class="col-12">
+        <div class="Name">
+          <span>{{ data?.Name?.[0]?.text || "Name Not Found" }} </span>
+          <div class="Title">{{ data?.Title?.[0]?.text || "Title Not Found" }}</div>
+        </div>
+      </div>
+      <!-- --------------------------------------------- page content --------------------------------------------- -->
+      <app-page [sections]="page" [data]="data" [isOneSide]="$index == 2" class="row d-flex justify-content-between"></app-page>
+      <!-- --------------------------------------------- page number ---------------------------------------------- -->
+      <span class="counter">Page {{ $index + 1 }}</span>
+    </div>
+    }
+  </div>
+  <div class="text-area w-100">
+    <textarea class="form-control w-100 h-100" [(ngModel)]="dataBinding"></textarea>
+  </div>
+</div>

@@ -9,7 +9,7 @@
     "test": "ng test",
     "deploy": "ng build && git add . && git commit -m 'deploy' && git push origin main && firebase deploy",
     "band":"ng build && firebase deploy",
-    "ss":"firebase target:apply hosting angular-cv-5000 angular-cv-5000"
+    "firebasetarget":"firebase target:apply hosting angular-cv-5000 angular-cv-5000"
   },
   "private": true,
   "dependencies": {
